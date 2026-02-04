@@ -1,5 +1,5 @@
 // ===== Exercise 1
-/*
+
 let randomNumber = Math.floor(Math.random() * 100 + 1 );
  
 for ( let i = 0 ; i <= randomNumber ; i++){
@@ -9,13 +9,13 @@ for ( let i = 0 ; i <= randomNumber ; i++){
     }
 }
 console.log("Random number:", randomNumber);
-*/
+
 
 
 
 
 // ===== Exercise 2
-/*
+
 
 function Capitalized (string){
     let evenCaps ="";
@@ -36,14 +36,14 @@ return [evenCaps, oddCaps];
 
 }
 console.log(Capitalized("abcdef"));
-*/
+
 
 
 
 
 
 // ===== Exercise 3
-/*
+
 
 function Palindrome (string){
     let reversWord = "";
@@ -59,12 +59,12 @@ function Palindrome (string){
 }
 console.log(Palindrome("madam"));
 console.log(Palindrome("hello"));
-*/
+
 
 
 
 // ===== Exercise 4
-/*
+
 function biggestNumberInArray(arrayNumber){
     if (arrayNumber.length === 0){
         return 0 ;
@@ -83,14 +83,14 @@ function biggestNumberInArray(arrayNumber){
 console.log(biggestNumberInArray([-1, 0, 3, 100, 99, 2, 99])); 
 console.log(biggestNumberInArray(['a', 3, 4, 2]));            
 console.log(biggestNumberInArray([]));
-*/
+
 
 
 
 
 
 // ===== Exercise 5 
-/*
+
 function UniqueArray(array){
     let newArray = [];
     for (item of array){
@@ -102,7 +102,7 @@ function UniqueArray(array){
 }
 const list = [1, 2, 3, 3, 3, 3, 4, 5];
 console.log(UniqueArray(list));
-*/
+
 
 
 
