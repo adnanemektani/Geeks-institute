@@ -49,9 +49,6 @@ secondp.addEventListener('mouseout',()=>{
 
 
 
-
-
-
 // ===== Exercise 2
 
 let Form = document.forms[0];
