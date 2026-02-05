@@ -1,4 +1,5 @@
 // ====== Daily Challenge 1
+
 let planets = [
     { name: "Mercury", color: "grey", moons: 0 },
     { name: "Venus", color: "orange", moons: 0 },
@@ -27,8 +28,41 @@ planets.forEach(planet => {
 
 
 })
+  
 
 
-// ====== Daily Challenge 2
+// ====== Daily Challenge Words in the stars
 
-// ====== Daily Challenge 3
+function frame (){
+    let word = prompt("Enter words separated by commas:");
+    let arrWord = word.split(",") ;
+
+    let maxLength = 0 
+    for (item of arrWord){
+        let cleanWord = item.trim();
+        if (cleanWord.length > maxLength) {
+            maxLength = cleanWord.length ;
+        }
+    }
+
+        let frameWidth = maxLength + 4;
+
+        console.log ( "*" .repeat(frameWidth));
+        for (item of arrWord){
+            let cleanWord = item.trim();
+            let padding = maxLength - cleanWord.length ;
+            console.log("* " + cleanWord + " ".repeat(padding) + "*");
+        }
+        console.log ( "*" . repeat(frameWidth) );
+    }
+frame();
+
+
+
+
+
+
+
+
+
+
