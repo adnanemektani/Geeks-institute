@@ -1,5 +1,6 @@
 // ====== Daily Challenge Not Bad
 
+
 let sentence = "My code Was not that bad, I like it now.";
 // Create a variable called wordNot where it’s value is the first appearance (ie. the position) of the substring “not” (from the sentence variable).
 let wordNot = sentence.indexOf("not");
