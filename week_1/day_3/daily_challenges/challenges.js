@@ -1,5 +1,5 @@
 // ====== Daily Challenge Daily challenge: Tell the story
-
+/*
 
  let form = document.getElementById('libform');
 
@@ -31,7 +31,7 @@ shuffleBtn.addEventListener('click', () => {
     let Verb = document.getElementById('verb').value;
     let place = document.getElementById('place').value;
 
-    
+     r 
     let stories = [
         `Once upon a time, ${person} saw a ${Adj} ${Noun} in ${place} and decided to ${Verb} it!`,
         `In ${place}, everyone was shocked when ${person} started to ${Verb} with a ${Adj} ${Noun}.`,
@@ -41,7 +41,24 @@ shuffleBtn.addEventListener('click', () => {
     let randomIndex = Math.floor(Math.random() * stories.length);
     document.getElementById('story').innerText = stories[randomIndex];
 });
+*/
 
-// ====== Daily Challenge 2
 
-// ====== Daily Challenge 3
+  
+// ====== Daily Challenge Letters
+
+
+const input = document.createElement("input");
+input.setAttribute("type", "text");
+input.setAttribute("placeholder", "Write only letters");
+document.body.appendChild(input);
+
+input.addEventListener("input", (event) => {
+    const value = event.target.value;
+
+    const newValue = value.replace(/[^A-Za-z]/g, "");
+    event.target.value = newValue;
+});
+
+
+
