@@ -1,5 +1,5 @@
 // ====== Daily Challenge Daily challenge: Tell the story
-/*
+
 
  let form = document.getElementById('libform');
 
@@ -41,7 +41,7 @@ shuffleBtn.addEventListener('click', () => {
     let randomIndex = Math.floor(Math.random() * stories.length);
     document.getElementById('story').innerText = stories[randomIndex];
 });
-*/
+
 
 
   
