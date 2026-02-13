@@ -23,5 +23,8 @@ const arr = Object.entries(users);
 console.log(arr);
 
 //exercice4 
+// Output = Object
+
+
 
 
