@@ -4,3 +4,13 @@
 
 
 
+//exercice 2
+
+function displayStudentInfo(objUser){
+    const {first , last  }= objUser ;
+    return 'ur full name is ' + first + " " + last + "." ;
+    
+}
+
+displayStudentInfo({first: 'Elie', last:'Schoppik'});
+
