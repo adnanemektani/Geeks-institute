@@ -28,3 +28,54 @@ console.log(arr);
 
 
 
+
+
+//exercice 5 
+class Dog {
+  constructor(name) {
+    this.name = name;
+  }
+};
+
+// optionr 1 ==> False ==> bcause there is no super(name) before this.... ; 
+// option 2 ==> True  
+// option 3 ==> false because we don't write name in constructore 
+// option 4 ==> false because we don't use super before this 
+
+
+
+
+
+
+//exercice 6 ===>
+//1
+ // [2] === [2] ==> False  
+ // {} === {} ==> False 
+
+ //2
+ //object2.number = 4  
+ //object3.number = 4  
+ //object4.number = 5  
+
+
+//3.1
+class Animal {
+  constructor(name , type , color) {
+       this.name = name;
+       this.type = type ;
+       this.color = color ;
+  }
+}
+class Mammal extends Animal {
+  constructor(name , type , color){
+    super(name, type, color);
+    
+  }
+  sound(soundMade){
+       return `${soundMade} I'm a ${this.type} and my name is ${this.name} and i am ${this.color}` ;
+    }
+}
+
+
+
+
