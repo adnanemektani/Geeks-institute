@@ -58,6 +58,8 @@ class Dog {
  //object4.number = 5  
 
 
+
+ 
 //3.1
 class Animal {
   constructor(name , type , color) {
@@ -75,7 +77,8 @@ class Mammal extends Animal {
        return `${soundMade} I'm a ${this.type} and my name is ${this.name} and i am ${this.color}` ;
     }
 }
-
+const farmerCow = new Mammal("Lily", "cow", "brown and white");
+console.log(farmerCow.sound("Moooo"));
 
 
 
