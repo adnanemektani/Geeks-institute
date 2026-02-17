@@ -5,7 +5,7 @@
 
 
 //exercice 2
-/*
+
 function displayStudentInfo(objUser){
     const {first , last  }= objUser ;
     return 'ur full name is ' + first + " " + last + "." ;
@@ -13,7 +13,8 @@ function displayStudentInfo(objUser){
 }
 
 displayStudentInfo({first: 'Elie', last:'Schoppik'});
-*/
+
+
 
 
 
