@@ -38,3 +38,21 @@ for (let i = 0; i < data.length; i++) {
   }
 }
 console.log(sumLoop);
+
+
+const sumReduce = data
+  .filter(animal => animal.type === 'dog')
+  .reduce((acc, dog) => acc + dog.age * 7, 0);
+
+console.log(sumReduce); 
+
+
+
+
+//exercice2
+
+// trim() removes leading and trailing whitespace in one call
+
+const userEmail3 = ' cannotfillemailformcorrectly@gmail.com ';
+const cleanEmail = userEmail3.trim();
+console.log(cleanEmail); // 'cannotfillemailformcorrectly@gmail.com'
