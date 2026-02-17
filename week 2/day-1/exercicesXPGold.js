@@ -2,7 +2,6 @@
 
 // 1 
 // Output: "____/''''\_____"
-
 // landscape() executes sequentially:
 //   flat(4)     => adds 4 underscores  => "____"
 //   mountain(4) => adds /''''\ pattern => "____/''''\""
