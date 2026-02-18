@@ -51,8 +51,66 @@ console.log(sumReduce);
 
 //exercice2
 
-// trim() removes leading and trailing whitespace in one call
+
 
 const userEmail3 = ' cannotfillemailformcorrectly@gmail.com ';
 const cleanEmail = userEmail3.trim();
-console.log(cleanEmail); // 'cannotfillemailformcorrectly@gmail.com'
+console.log(cleanEmail); 
+
+
+
+
+// EXERCISE 3 
+
+const users = [
+  { firstName: 'Bradley',  lastName: 'Bouley',   role: 'Full Stack Resident' },
+  { firstName: 'Chloe',    lastName: 'Alnaji',   role: 'Full Stack Resident' },
+  { firstName: 'Jonathan', lastName: 'Baughn',   role: 'Enterprise Instructor' },
+  { firstName: 'Michael',  lastName: 'Herman',   role: 'Lead Instructor' },
+  { firstName: 'Robert',   lastName: 'Hajek',    role: 'Full Stack Resident' },
+  { firstName: 'Wes',      lastName: 'Reid',     role: 'Instructor' },
+  { firstName: 'Zach',     lastName: 'Klabunde', role: 'Instructor' },
+];
+
+
+
+const restructured = users.reduce((acc, user) => {
+  const fullName = `${user.firstName} ${user.lastName}`;
+  acc[fullName] = user.role;
+  return acc;
+}, {});
+
+console.log(restructured);
+
+
+
+
+// EXERCISE 4 
+
+
+const letters = ['x', 'y', 'z', 'z'];
+
+
+
+const countLoop = {};
+for (let i = 0; i < letters.length; i++) {
+  const letter = letters[i];
+  if (countLoop[letter]) {
+    countLoop[letter]++;
+  } else {
+    countLoop[letter] = 1;
+  }
+}
+console.log(countLoop); 
+
+
+
+
+const countReduce = letters.reduce((acc, cur) => {
+  acc[cur] = acc[cur] ? acc[cur] + 1 : 1;
+  return acc;
+}, {});
+
+console.log(countReduce); 
+
+
