@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+
+    <section id="output"></section>
+
+    <script>
+        let params = new URLSearchParams(window.location.search);
+
+        let name = params.get("name");
+        let lastname = params.get("lastname");
+
+        let section = document.getElementById("output");
+        section.innerHTML = `
+            <h2>Submitted Data:</h2>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Last Name:</strong> ${lastname}</p>
+        `;
+    </script>
+
+</body>
+</html>
