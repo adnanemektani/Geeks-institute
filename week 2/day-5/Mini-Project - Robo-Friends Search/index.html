@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robo-Friends Search</title>
+    <style>
+        body{
+            background-color: rgb(90, 49, 128);
+            background-image: url(circuit-pattern.png);
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
+        }
+        nav{
+            background-color: rgb(107, 146, 48);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 20px; 
+            box-shadow: 0 3px 10px rgba(0,0,0,0,3);
+        }
+        .logo{
+             font-family: 'Press Start 2P', cursive;
+            color: #1a0a3b;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+            white-space: nowrap;
+        }
+        #Search{
+            flex: 1;
+             max-width: 500px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Exo 2', sans-serif;
+            font-size: 0.95rem;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            outline: none;
+        }
+        .grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            padding: 40px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+
+        }
+        .card{background: #00bcd4;
+            border-radius: 10px;
+            padding: 25px 20px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            background-image:url(card-pattern.png);
+
+        }
+        .card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+
+        .card-img-wrapper {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: #1a2a4a;
+            margin: 0 auto 18px;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #131212;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .card-email {
+            font-size: 0.78rem;
+            color: rgba(17, 16, 16, 0.8);
+            font-weight: 300;
+        }
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 1.2rem;
+            padding: 60px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">RoboFreinds</div>
+        <input type="text" id="Search" placeholder="Search Robots">
+    </nav>
+    <div class="grid" id="cards-Container"></div>
+    
+</body>
+<script>
+          const robots = [
+          {
+            id: 1,
+            name: 'Leanne Graham',
+            username: 'Bret',
+            email: 'Sincere@april.biz',
+            image: 'https://robohash.org/1?200x200'
+          },
+          {
+            id: 2,
+            name: 'Ervin Howell',
+            username: 'Antonette',
+            email: 'Shanna@melissa.tv',
+            image: 'https://robohash.org/2?200x200'
+          },
+          {
+            id: 3,
+            name: 'Clementine Bauch',
+            username: 'Samantha',
+            email: 'Nathan@yesenia.net',
+            image: 'https://robohash.org/3?200x200'
+          },
+          {
+            id: 4,
+            name: 'Patricia Lebsack',
+            username: 'Karianne',
+            email: 'Julianne.OConner@kory.org',
+            image: 'https://robohash.org/4?200x200'
+          },
+          {
+            id: 5,
+            name: 'Chelsey Dietrich',
+            username: 'Kamren',
+            email: 'Lucio_Hettinger@annie.ca',
+            image: 'https://robohash.org/5?200x200'
+          },
+          {
+            id: 6,
+            name: 'Mrs. Dennis Schulist',
+            username: 'Leopoldo_Corkery',
+            email: 'Karley_Dach@jasper.info',
+            image: 'https://robohash.org/6?200x200'
+          },
+          {
+            id: 7,
+            name: 'Kurtis Weissnat',
+            username: 'Elwyn.Skiles',
+            email: 'Telly.Hoeger@billy.biz',
+            image: 'https://robohash.org/7?200x200'
+          },
+          {
+            id: 8,
+            name: 'Nicholas Runolfsdottir V',
+            username: 'Maxime_Nienow',
+            email: 'Sherwood@rosamond.me',
+            image: 'https://robohash.org/8?200x200'
+          },
+          {
+            id: 9,
+            name: 'Glenna Reichert',
+            username: 'Delphine',
+            email: 'Chaim_McDermott@dana.io',
+            image:'https://robohash.org/9?200x200'
+          },
+          {
+            id: 10,
+            name: 'Clementina DuBuque',
+            username: 'Moriah.Stanton',
+            email: 'Rey.Padberg@karina.biz',
+            image:'https://robohash.org/10?200x200'
+          }
+          ];
+
+
+          const CreateCard = ({id, name, email, image })=> {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `
+            <div class="card-img-wrapper">
+                <img src="${image}" alt="${name}" loading="lazy" />
+            </div>
+            <p class="card-name">${name}</p>
+            <p class="card-email"> ${email}</p>
+            `;
+            return card ;
+
+          };
+          const renderCards =(list) => {
+          const container = document.getElementById("cards-Container");
+          container.innerHTML= '';
+
+
+
+          if  (list.length === 0 ){
+            container.innerHTML=`
+            <div class="no-result">
+                no robot found...
+            </div>`;
+            return;
+          }
+
+          list.forEach(robot => {
+            const card = CreateCard(robot);
+            container.appendChild(card);
+            
+          });
+          };
+           const filterRobots = (searchTerm) => {
+            return robots.filter(({ name }) =>
+                name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        };
+         document.getElementById('Search').addEventListener('input', (e) => {
+            const term = e.target.value;
+            const filtered = filterRobots(term);
+            renderCards(filtered);
+        });
+
+          renderCards(robots);
+
+
+</script>
+</html>
