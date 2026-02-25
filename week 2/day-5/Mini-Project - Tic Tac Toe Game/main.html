@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Game</title>
+    <style>
+        
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+    --bg: #0d0d0d;
+    --panel: #161616;
+    --border: #2a2a2a;
+    --accent: #f0e040;
+    --accent2: #ff4560;
+    --text: #f0f0f0;
+    --muted: #555;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 2px solid var(--border);
+    background: var(--panel);
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    margin: 5px;
+    transition: all 0.2s;
+}
+
+button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 110px);
+    grid-template-rows: repeat(3, 110px);
+    border: 1px solid var(--border);
+    margin: 20px 0;
+}
+
+#board div {
+    width: 110px;
+    height: 110px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+#board div:hover {
+    background: rgba(240,224,64,0.05);
+}
+
+#board div.X { color: var(--accent); }
+#board div.O { color: var(--accent2); }
+
+#message {
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin: 10px 0;
+    text-transform: uppercase;
+}
+
+#restart {
+    display: none;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.2em;
+    padding: 12px 40px;
+}
+
+#restart:hover {
+    background: var(--accent);
+    color: var(--bg);
+}
+.buttons-group {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+
+     <div class="buttons-group">
+    <button id="btnX">X</button>
+    <button id="btnO">O</button>
+</div>
+
+
+<div class="buttons-group">
+    <button id="btnEasy">Easy</button>
+    <button id="btnHard">Hard</button>
+</div>
+<div id="board">
+    <div id="cell0"></div>
+    <div id="cell1"></div>
+    <div id="cell2"></div>
+    <div id="cell3"></div>
+    <div id="cell4"></div>
+    <div id="cell5"></div>
+    <div id="cell6"></div>
+    <div id="cell7"></div>
+    <div id="cell8"></div>
+</div>
+      <div id="message"></div>
+    
+    <button id="restart">Restart</button>
+
+
+
+
+    <script>
+    let board = ['', '', '', '', '', '', '', '', ''];
+    let playerSymbol = '';  
+    let cpuSymbol = '';
+    let level = 'easy';
+    let gameOver = false;
+    let playerTurn = true;
+
+
+
+
+    function chooseSymbol(symbol){
+        playerSymbol = symbol;
+        cpuSymbol = symbol === "X" ? "O" : "X";
+         console.log('Player:', playerSymbol);
+         console.log('CPU:', cpuSymbol);
+    }
+document.getElementById("btnX").addEventListener('click', function(){
+    chooseSymbol("X");
+});
+document.getElementById("btnO").addEventListener('click', function(){
+    chooseSymbol("O");
+});
+document.getElementById('cell0').addEventListener('click',function(){
+    playerMove(0);
+});
+document.getElementById('cell1').addEventListener('click',function(){
+    playerMove(1);
+});document.getElementById('cell2').addEventListener('click',function(){
+    playerMove(2);
+});document.getElementById('cell3').addEventListener('click',function(){
+    playerMove(3);
+});document.getElementById('cell4').addEventListener('click',function(){
+    playerMove(4);
+});document.getElementById('cell5').addEventListener('click',function(){
+    playerMove(5);
+});document.getElementById('cell6').addEventListener('click',function(){
+    playerMove(6);
+});document.getElementById('cell7').addEventListener('click',function(){
+    playerMove(7);
+});document.getElementById('cell8').addEventListener('click',function(){
+    playerMove(8);
+});
+
+
+
+
+function playerMove(index){
+    if (board[index] !== '' || gameOver)return;
+    board[index] = playerSymbol;
+    document.getElementById('cell' + index).textContent = playerSymbol;
+    document.getElementById('cell' + index).className = playerSymbol;
+    console.log('board', board);
+
+    const result = checkWinner();
+    if (result){
+        endGame(result);
+        return;
+    }
+     cpuMove();
+}
+
+const winCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [6, 4, 2]
+];
+function checkWinner(){
+    for ( const [a, b, c] of winCombos){
+        if (board[a] !== '' && board[a] === board[b] && board[a] === board[c]){
+            return board[a];
+        }
+    }
+    if(board.every(cell => cell !== '')){
+        return 'tie';
+    }
+    return null;
+}
+
+
+function endGame(result) {
+ 
+    gameOver = true;
+
+  
+    if (result === 'tie') {
+        document.getElementById('message').textContent = 'Tie game!';
+    } else if (result === playerSymbol) {
+        document.getElementById('message').textContent = 'You win! ';
+    } else {
+        document.getElementById('message').textContent = 'CPU wins!';
+    }
+
+ 
+    document.getElementById('restart').style.display = 'block';
+}
+function cpuMove() {
+    
+    const emptyCells = board.reduce((acc, cell, index) => {
+        if (cell === '') acc.push(index);
+        return acc;
+    }, []);
+
+   
+   let cpuChoice;
+
+    if (level === 'easy') {
+        
+        cpuChoice = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    } else {
+        
+        cpuChoice = bestCpuMove();
+    }
+
+    
+    board[cpuChoice] = cpuSymbol;
+    document.getElementById('cell' + cpuChoice).textContent = cpuSymbol;
+    document.getElementById('cell' + cpuChoice).className = cpuSymbol;
+
+
+    const result = checkWinner();
+    if (result) {
+        endGame(result);
+        return;
+    }
+}
+function restartGame() {
+  
+    board = ['', '', '', '', '', '', '', '', ''];
+    
+  
+    gameOver = false;
+    playerTurn = true;
+    
+
+    for (let i = 0; i < 9; i++) {
+        document.getElementById('cell' + i).textContent = '';
+    }
+    
+  
+    document.getElementById('message').textContent = '';
+    document.getElementById('restart').style.display = 'none';
+}
+document.getElementById('btnEasy').addEventListener('click', function() {
+    level = 'easy';
+    console.log('Level:', level);
+});
+
+document.getElementById('btnHard').addEventListener('click', function() {
+    level = 'hard';
+    console.log('Level:', level);
+});
+document.getElementById('restart').addEventListener('click', function() {
+    restartGame();
+});
+
+
+
+
+function minimax(newBoard, isMaximizing) {
+    
+    const result = checkWinnerForBoard(newBoard);
+    if (result === cpuSymbol) return 10;
+    if (result === playerSymbol) return -10;
+    if (result === 'tie') return 0;
+
+    
+    const emptyCells = newBoard.reduce((acc, cell, index) => {
+        if (cell === '') acc.push(index);
+        return acc;
+    }, []);
+
+    if (isMaximizing) {
+        
+        let bestScore = -Infinity;
+        for (const index of emptyCells) {
+            newBoard[index] = cpuSymbol;
+            const score = minimax(newBoard, false);
+            newBoard[index] = '';
+            bestScore = Math.max(score, bestScore);
+        }
+        return bestScore;
+
+    } else {
+        
+        let bestScore = Infinity;
+        for (const index of emptyCells) {
+            newBoard[index] = playerSymbol;
+            const score = minimax(newBoard, true);
+            newBoard[index] = '';
+            bestScore = Math.min(score, bestScore);
+        }
+        return bestScore;
+    }
+}
+function bestCpuMove() {
+    const emptyCells = board.reduce((acc, cell, index) => {
+        if (cell === '') acc.push(index);
+        return acc;
+    }, []);
+
+    let bestScore = -Infinity;
+    let bestIndex = null;
+
+    for (const index of emptyCells) {
+        board[index] = cpuSymbol;
+        const score = minimax(board, false);
+        board[index] = '';
+
+        if (score > bestScore) {
+            bestScore = score;
+            bestIndex = index;
+        }
+    }
+    return bestIndex;
+}
+function checkWinnerForBoard(b) {
+    for (const [a, b2, c] of winCombos) {
+        if (b[a] !== '' && b[a] === b[b2] && b[a] === b[c]) {
+            return b[a];
+        }
+    }
+    if (b.every(cell => cell !== '')) return 'tie';
+    return null;
+}
+</script>
+</body>
+
+</html>
