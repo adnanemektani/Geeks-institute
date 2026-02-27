@@ -21,7 +21,7 @@ Promise.all([promise1, promise2, promise3])
 
 
 //Exercice2
-
+//Output=> will be [2, 4, 6]
 
 
 
