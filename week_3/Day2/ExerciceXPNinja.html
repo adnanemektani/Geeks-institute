@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily challenge: Gifs</title>
+  </head>
+  <body>
+    <form id="form1">
+      <label for="searchInput">Enter a gif category:</label>
+      <input id="searchInput" />
+      <button type="submit" id="button">Submit</button>
+    </form>
+
+    <div id="gifContainer"></div>
+    <button id="deleteAll">DELETE ALL</button>
+  </body>
+  <script>
+    //Exercice1
+    const form = document.getElementById("form1");
+    const search = document.getElementById("searchInput");
+    const gifContainer = document.getElementById("gifContainer");
+    const deleteGif = document.getElementById("deleteAll");
+
+    deleteGif.addEventListener("click", () => {
+      gifContainer.innerHTML = " ";
+    });
+
+    form.addEventListener("submit", async (gif) => {
+      gif.preventDefault();
+      const Searchbar = search.value;
+
+      try {
+        const response = await fetch(
+          `https://api.giphy.com/v1/gifs/random?api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My&tag=${Searchbar}`,
+        );
+        if (!response.ok) {
+          return "ooops ther is a probleme";
+        }
+        const data = await response.json();
+        const imgUrl = data.data.images.original.url;
+        const div = document.createElement("div");
+        const img = document.createElement("img");
+        img.src = imgUrl;
+
+        const deletBtn = document.createElement("button");
+        deletBtn.innerHTML = "DELETE";
+
+        deletBtn.addEventListener("click", () => {
+          div.remove();
+        });
+        div.appendChild(img);
+        div.appendChild(deletBtn);
+        gifContainer.appendChild(div);
+      } catch (err) {
+        return "erruer 400";
+      }
+    });
+
+
+ //Exercice2
+ /* 
+// after 1s:
+==CONCURRENT START with Promise.all==
+starting slow promise
+starting fast promise
+// after 1s (fast):
+fast promise is done
+// after 2s (slow):
+slow promise is done
+slow
+fast
+*/
+
+
+
+
+//Exercice3
+/*
+// after 5s:
+==PARALLEL with await Promise.all==
+starting slow promise
+starting fast promise
+// after 1s:
+fast promise is done
+fast                    
+// after 2s:
+slow promise is done
+slow      
+*/
+
+
+
+//Exercice4 
+/*
+// after 13s:
+==PARALLEL with Promise.then==
+starting slow promise
+starting fast promise
+// after 1s:
+fast promise is done
+fast                    
+// after 2s:
+slow promise is done
+slow                    
+*/
+
+  </script>
+</html>
