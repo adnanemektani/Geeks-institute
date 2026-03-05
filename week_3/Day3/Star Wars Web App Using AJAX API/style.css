@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: black url('https://user-images.githubusercontent.com/15611124/188448555-4813334c-d95b-4229-87c2-96ef8b417c8a.png');
+    background-size: cover;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.sw-logo {
+    color: transparent;
+    -webkit-text-stroke: 2px #FFE81F; 
+    font-size: 80px;
+    font-weight: bold;
+    line-height: 0.8;
+    margin-bottom: 30px;
+    letter-spacing: -5px;
+}
+
+.info-box {
+    border: 3px solid #FFE81F;
+    border-radius: 15px;
+    padding: 40px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6); 
+}
+
+#content h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+#content p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+#find-btn {
+    background: #e0e0e0;
+    border: 2px solid #FFE81F;
+    padding: 10px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#find-btn:hover {
+    background: #FFE81F;
+}
+
+.fa-spinner {
+    font-size: 50px;
+    color: white;
+    margin-bottom: 10px;
+}
