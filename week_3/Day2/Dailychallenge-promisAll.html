@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Comparison</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        form { margin-bottom: 20px; background: #f4f4f4; padding: 15px; border-radius: 8px; }
+        .input-group { margin-bottom: 10px; }
+        button { cursor: pointer; padding: 8px 16px; background: #007BFF; color: white; border: none; border-radius: 4px; }
+        #results { font-weight: bold; color: #333; }
+    </style>
+</head>
+<body>
+
+    <h2>Sunrise Finder</h2>
+    <form id="sunriseForm">
+        <h3>City 1</h3>
+        <div class="input-group">
+            Lat: <input type="text" id="lat1" value="48.864716" required>
+            Long: <input type="text" id="lng1" value="2.349014" required>
+        </div>
+        
+        <h3>City 2</h3>
+        <div class="input-group">
+            Lat: <input type="text" id="lat2" value="40.730610" required>
+            Long: <input type="text" id="lng2" value="-73.935242" required>
+        </div>
+
+        <button type="submit">Get Sunrise Times</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('sunriseForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = "Loading...";
+
+    const lat1 = document.getElementById('lat1').value;
+    const lng1 = document.getElementById('lng1').value;
+    const lat2 = document.getElementById('lat2').value;
+    const lng2 = document.getElementById('lng2').value;
+
+    
+    const url1 = `https://api.sunrise-sunset.org/json?lat=${lat1}&lng=${lng1}&formatted=0`;
+    const url2 = `https://api.sunrise-sunset.org/json?lat=${lat2}&lng=${lng2}&formatted=0`;
+
+    try {
+        
+        const responses = await Promise.all([
+            fetch(url1),
+            fetch(url2)
+        ]);
+
+        
+        const data = await Promise.all(responses.map(res => {
+            if (!res.ok) throw new Error("API request failed");
+            return res.json();
+        }));
+
+        const sunrise1 = new Date(data[0].results.sunrise).toLocaleTimeString();
+        const sunrise2 = new Date(data[1].results.sunrise).toLocaleTimeString();
+
+        resultsDiv.innerHTML = `
+            <p>City 1 Sunrise: ${sunrise1}</p>
+            <p>City 2 Sunrise: ${sunrise2}</p>
+        `;
+
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        resultsDiv.innerHTML = "Error: Could not retrieve data. Please check your coordinates.";
+    }
+});
+    </script>
+</body>
+</html>
