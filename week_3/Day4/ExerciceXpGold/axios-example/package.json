@@ -1,0 +1,14 @@
+{
+  "name": "axios-example",
+  "version": "1.0.0",
+  "description": "Axios example - fetching data from API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

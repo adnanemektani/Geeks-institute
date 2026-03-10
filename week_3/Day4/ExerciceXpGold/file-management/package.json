@@ -1,0 +1,11 @@
+{
+  "name": "file-management",
+  "version": "1.0.0",
+  "description": "File Management exercise using path and fs modules",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": ""
+}

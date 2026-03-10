@@ -1,0 +1,3 @@
+This is an example text file created for the File Management exercise.
+It contains some sample content to demonstrate reading file information using Node.js fs module.
+The path and fs modules will be used to get information about this file.
