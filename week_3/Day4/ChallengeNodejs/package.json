@@ -1,0 +1,10 @@
+{
+    "name": "challenge-nodejs",
+    "version": "1.0.0",
+    "description": "Date exercises",
+    "main": "script.js",
+    "scripts": {
+        "start": "node script.js"
+    },
+    "dependencies": {}
+}
