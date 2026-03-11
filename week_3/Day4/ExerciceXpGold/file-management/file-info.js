@@ -1,36 +1,34 @@
+// file-info.js - File information using path and fs modules
 const path = require('path');
 const fs = require('fs');
 
-function getFileInfo() {
+// Use path.join to create a file path to example.txt within the data directory
+const dataDir = path.join(__dirname, 'data');
+const filePath = path.join(dataDir, 'example.txt');
 
-    const dataDir = path.join(__dirname, 'data');
-    const filePath = path.join(dataDir, 'example.txt');
-
-    console.log('\n=== File Information ===');
-    console.log(`File Path: ${filePath}`);
-
-
+// Check if the file exists using fs.existsSync
+function checkFileInfo() {
+    console.log('\n=== File Information ===\n');
+    
     const exists = fs.existsSync(filePath);
-    console.log(`File Exists: ${exists ? 'Yes' : 'No'}`);
-
+    console.log(`File exists: ${exists ? 'Yes ✅' : 'No ❌'}`);
+    
     if (exists) {
-
+        // Get information about the file using fs.statSync
         const stats = fs.statSync(filePath);
         
-        console.log(`\n--- File Stats ---`);
-        console.log(`Size: ${stats.size} bytes`);
-        console.log(`Creation Time: ${stats.birthtime}`);
-        console.log(`Last Modified: ${stats.mtime}`);
+        console.log(`\n--- File Details ---`);
+        console.log(`File size: ${stats.size} bytes`);
+        console.log(`Created: ${stats.birthtime}`);
+        console.log(`Modified: ${stats.mtime}`);
         
-        return {
-            exists: true,
-            size: stats.size,
-            creationTime: stats.birthtime,
-            lastModified: stats.mtime
-        };
-    } else {
-        return { exists: false };
+        // Read and display content
+        const content = fs.readFileSync(filePath, 'utf8');
+        console.log(`\n--- File Content ---`);
+        console.log(content);
     }
+    
+    return { exists, filePath };
 }
 
-module.exports = getFileInfo;
+module.exports = checkFileInfo;

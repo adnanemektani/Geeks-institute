@@ -1,4 +1,5 @@
-const fetchPosts = require('./fetch-data');
+// app.js - Main application file that uses fetch-data module
+const fetchAndDisplayPosts = require('./fetch-data');
 
-
-fetchPosts();
+// Call the function to fetch and display post titles
+fetchAndDisplayPosts();

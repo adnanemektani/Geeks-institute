@@ -1,0 +1,13 @@
+{
+  "name": "ninja-utility",
+  "version": "1.0.0",
+  "description": "A command-line utility with various commands",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["ninja", "utility", "cli"],
+  "author": "",
+  "license": "",
+  "_args": []
+}

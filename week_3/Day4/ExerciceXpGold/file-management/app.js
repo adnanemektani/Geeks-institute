@@ -1,11 +1,5 @@
-const getFileInfo = require('./file-info');
+// app.js - Main application file that uses file-info module
+const checkFileInfo = require('./file-info');
 
-
-const fileInfo = getFileInfo();
-
-console.log('\n=== Summary ===');
-console.log(`The file ${fileInfo.exists ? 'exists' : 'does not exist'}`);
-if (fileInfo.exists) {
-    console.log(`Size: ${fileInfo.size} bytes`);
-    console.log(`Created: ${fileInfo.creationTime}`);
-}
+// Call the function to display information about the file
+checkFileInfo();
