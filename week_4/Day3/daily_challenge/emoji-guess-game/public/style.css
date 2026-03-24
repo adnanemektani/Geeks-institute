@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f0f8ff;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+
+.emoji {
+    font-size: 100px;
+    margin: 20px 0;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.option {
+    padding: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.option.correct { background: #4caf50; color: white; }
+.option.wrong { background: #f44336; color: white; }
+
+#feedback { margin: 20px; font-size: 1.2em; }
