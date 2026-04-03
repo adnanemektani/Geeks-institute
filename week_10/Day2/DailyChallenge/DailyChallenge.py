@@ -21,4 +21,6 @@ for i in range(len(string)):
         else:
                 if string [i] != string[i-1]:
                         result = result + string[i]
+
+        
 print(result)
