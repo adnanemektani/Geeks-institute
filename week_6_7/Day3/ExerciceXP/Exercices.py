@@ -115,6 +115,8 @@ def number(num):
 
 number(int(input("enter a number between 1 and 100")))
 
+#exercice6
+
 
 
 
