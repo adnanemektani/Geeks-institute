@@ -114,9 +114,7 @@ def number(num):
              print(f'oops! your number: {num}, random was: {ran_num}')
 
 number(int(input("enter a number between 1 and 100")))
-
-#exercice6
-
+import 
 
 
 
