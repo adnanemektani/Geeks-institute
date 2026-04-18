@@ -1,14 +1,14 @@
 #Exercice1
-"""
+
 keys = ['Ten', 'Twenty', 'Thirty']
 values = [10, 20, 30]
     
 print (dict(zip(keys, values)))
 
-"""
+
 
 #Exercice2
-"""
+
 
 family = {"rick": 43, 'beth': 13, 'morty': 5, 'summer': 8}
 
@@ -30,9 +30,9 @@ for item in family:
 print(f'there is {sum} of family have to pay ')
 print(f'the total is {total}')
 
-"""
+
 #Exercice3
-"""
+
 brand = {
     "name": "Zara",
     "creation_date": 1975,
@@ -89,7 +89,7 @@ more_on_zara = {
 brand.update(more_on_zara)
 #13
 print(brand["number_stores"])
-"""
+
 """output is 10000"""
 
 #exercice4
@@ -117,12 +117,93 @@ number(int(input("enter a number between 1 and 100")))
 
 #exercice6
 
+def make_shirt(size="large", text="I love Python"):
+    print( f'The size of the shirt is {size} and the text is {text}')
+
+make_shirt()
+make_shirt(size="medium")
+make_shirt(size="XXL" , text="Defferent Message")
+
+#exercice 7
+import random
+def get_random_temp(season):
+    
+    if season == "winter":  
+        ran_num = random.randint(-10, 16)
+    elif season == "spring":
+        ran_num = random.randint(16,23)
+    elif season == "fall" or season == "autumn":
+        ran_num = random.randint(24,32)
+    elif season == "summer":
+        ran_num = random.randint(32,40)     
+    return ran_num
+    
+get_random_temp()
+
+def main():
+    season = (input("enter which season : summer/fall/autumn/winter/spring:"))
+    temp = get_random_temp(season)
+    print(f"The temperature right now is {temp} degrees Celsius.")
+    if temp < 0 :
+        print("Brrr, that’s freezing! Wear some extra layers today")
+    elif 0 <= temp < 16 :
+        print(f"Quite chilly! Don’t forget your coat")
+    elif 16 <= temp < 23 :
+        print(f"normally . i like it !!")
+    elif 24 <= temp < 33 :
+        print(f"nice , id good vibe yeah")
+    elif 33 <= temp <= 40 :
+        print(f"wooow , so hot")
+main()
 
 
+#exercice8 
 
+data = [
+    {
+        "question": "What is Baby Yoda's real name?",
+        "answer": "Grogu"
+    },
+    {
+        "question": "Where did Obi-Wan take Luke after his birth?",
+        "answer": "Tatooine"
+    },
+    {
+        "question": "What year did the first Star Wars movie come out?",
+        "answer": "1977"
+    },
+    {
+        "question": "Who built C-3PO?",
+        "answer": "Anakin Skywalker"
+    },
+    {
+        "question": "Anakin Skywalker grew up to be who?",
+        "answer": "Darth Vader"
+    },
+    {
+        "question": "What species is Chewbacca?",
+        "answer": "Wookiee"
+    }
+]
 
+def exam():
+    correct = 0
+    incorrect = 0
+    for item in data:
+        reponse = input(item["question"])
+        if reponse == item["answer"]:
+            correct += 1 
+        elif reponse != item["answer"]:
+            incorrect += 1
+    return correct, incorrect
+exam() 
+def score(correct, incorrect):
+    print(f"correct answers : {correct}, incorrect answers : {incorrect}")
 
-
+correct, incorrect = exam()
+score(correct, incorrect)
+        
+                 
 
 
 
